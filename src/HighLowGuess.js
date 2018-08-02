@@ -28,10 +28,10 @@ class HighLowGuess {
     return [false, "Please enter a number"]
     }
     
-    if (this.answer >= newGuess) { // number was too high
+    if (this.answer > newGuess) { // number was too high
       return [false, "Try higher"]
       
-    } else if (this.answer <= newGuess) { // number was too low
+    } else if (this.answer < newGuess) { // number was too low
       return [false, "Try lower"]
       
     } else { // guess was correct
