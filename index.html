@@ -7,6 +7,15 @@
 <!-- Package Imports -->
 
 <!-- My script files -->
+<script src='src/HighLowGuess.js'></script>
+<script src='src/SimpleView.js'></script>
+
+<!-- bind code to run upon program loading -->
+
+<script>
+  window.onload = SimpleView.HighLowRuntime(new HighLowGuess()) // on loading, create an instance of HighLowGuess and pass it to simpleView
+
+</script>
 
 </head>
 
