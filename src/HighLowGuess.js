@@ -1,6 +1,6 @@
 class HighLowGuess {
   constructor () {
-    this.answer = math.floor(math.random() * 100)
+    this.answer = Math.floor(Math.random() * 100)
     this.guessCount = 0
     this.firstPrompt = 'Guess a number between 0 and 99'
   }
