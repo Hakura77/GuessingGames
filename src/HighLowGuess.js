@@ -23,10 +23,10 @@ class HighLowGuess {
       } else {
         // guess was a whole number within the correct range, passes validation
       }
-    } else (
+    } else {
     // guess was a non-number datatype - possible edge case where a date is passed but that would be wrong anyway
     return [false, "Please enter a number"]
-    )
+    }
     
     if (this.answer >= newGuess) { // number was too high
       return [false, "Try higher"]
