@@ -1,0 +1,22 @@
+body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+#sidebar {
+  flex-basis: 20%
+}
+
+#gameDiv {
+  flex-basis: 80%;
+  display: flex;
+}
+
+#sidebar * {
+  display: block;
+}
+
+#gamediv * {
+  flex-direction: column;
+}

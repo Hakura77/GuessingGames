@@ -2,7 +2,10 @@
 <HTML>
 <head>
 <meta charset='UTF8'>
-<title>Number Guessing Game</title>
+<title>Number Guessing Games</title>
+
+<!-- css files -->
+<link rel="stylesheet" type="text/css" href="css\stylesheet.css">
 
 <!-- Package Imports -->
 
@@ -13,16 +16,30 @@
 <!-- bind code to run upon program loading -->
 
 <script>
-  window.onload = SimpleView.highLowRuntime(new HighLowGuess()) // on loading, create an instance of HighLowGuess and pass it to simpleView
+  // disabled the window.onload() call to simpleView in order to prepare for conversion to Vue controller
+  // window.onload = SimpleView.highLowRuntime(new HighLowGuess()) // on loading, create an instance of HighLowGuess and pass it to simpleView
 
 </script>
 
 </head>
 
 <body>
-<h1>Placeholder</h1>
+<div id='sidebar'>
+<div id='sidebarTitle'>
+<h1>Choose your game mode!</h1>
+</div>
+<input class='sidebarButton' type='button' v-on:click='switchTo(highLowGuess)' value='You guess High or Low'>
+<input class='sidebarButton' type='button' v-on:click='switchTo(hotColdGuess)' value='You guess Hot or Cold'>
+<input class='sidebarButton' type='button' v-on:click='switchTo(highLowAnswer)' value='Program Guesses High or Low'>
+<input class='sidebarButton' type='button' v-on:click='switchTo(hotColdAnswer)' value='Program Guesses Hot or Cold'>
+</div>
 
-
+<div id='gameDiv'>
+<gameHeader></gameHeader>
+<gameLog></gameLog>
+<gameInput></gameInput>
+<gameReset></gameReset>
+</div>
 
 </body>
 
