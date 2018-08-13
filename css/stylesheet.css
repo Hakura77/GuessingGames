@@ -14,7 +14,24 @@ body {
 }
 
 #sidebar * {
+  height: 6.5em;
   display: block;
+  width: 100%;
+  color: #00a3cc;
+}
+
+#sidebar input {
+  border: solid 0.05em darkblue;
+  border-radius: 0.2em;
+  background-color: lightblue;
+  font-size: 1.5em;
+}
+
+#sidebarTitle {
+  border-style: solid;
+  border-width: 0.05em;
+  border-radius: 0.2em;
+  text-align: center;
 }
 
 #gamediv * {
