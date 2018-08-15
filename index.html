@@ -8,17 +8,22 @@
 <link rel="stylesheet" type="text/css" href="css\stylesheet.css">
 
 <!-- Package Imports -->
+<!-- production version, optimized for size and speed -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
 <!-- My script files -->
 <script src='src/HighLowGuess.js'></script>
 <script src='src/SimpleView.js'></script>
+<script src='src/VueController.js'></script>
 
 <!-- bind code to run upon program loading -->
 
 <script>
   // disabled the window.onload() call to simpleView in order to prepare for conversion to Vue controller
   // window.onload = SimpleView.highLowRuntime(new HighLowGuess()) // on loading, create an instance of HighLowGuess and pass it to simpleView
-
+  document.addEventListener('DOMContentLoaded', function() {
+    var theController = new VueController() // deliberately global
+  }) 
 </script>
 
 </head>
@@ -35,15 +40,15 @@
 </div>
 
 <div id='gameDiv'>
-<h1 id = 'gameTitle'> {{ titlePrompt }} </h1>
-<ul id = 'messageLog'>
-  <li v-for='item in inputs'>{{ item }}</li>
-</ul>
+  <h1 id = 'gameTitle'> {{ titlePrompt }} </h1>
+  <ul id = 'messageLog'>
+    <li v-for='item in inputs'>{{ item }}</li>
+  </ul>
 
-<div id='gameInput'>
-<input v-on:keyup.enter='updateInputs' v-model='message' placeholder='Enter a guess!'>
-<button v-on:click='updateInputs'>Submit</button>
-</div>
+  <div id='gameInput'>
+    <input v-on:keyup.enter='updateInputs' v-model='message' :placeholder='{{ inputPrompt }}'>
+    <button v-on:click='updateInputs' >Submit</button>
+  </div>
 
 <!-- will move to a component based system when the understanding of vue is higher -->
 <!-- <gameHeader></gameHeader>
