@@ -36,12 +36,14 @@
 
 <div id='gameDiv'>
 <h1 id = 'gameTitle'> {{ titlePrompt }} </h1>
-<ul id = 'MessageLog'>
+<ul id = 'messageLog'>
   <li v-for='item in inputs'>{{ item }}</li>
 </ul>
 
+<div id='gameInput'>
 <input v-on:keyup.enter='updateInputs' v-model='message' placeholder='Enter a guess!'>
 <button v-on:click='updateInputs'>Submit</button>
+</div>
 
 <!-- will move to a component based system when the understanding of vue is higher -->
 <!-- <gameHeader></gameHeader>
