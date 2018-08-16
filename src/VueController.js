@@ -58,33 +58,38 @@ class VueController {
         
       })
     )
-	
-    this.allMyElements.set( 
+    
+    this.allMyElements.set(
       'gameDiv',
       new Vue ({
         el: '#gameDiv',
         data: {
-          messageLog: [],
+          messageLog: ['<<First prompt Placeholder>>'],
           inputPrompt: 'Enter a Guess!',
           userInput: '',
-          titlePrompt: 'Guess a Number between 0 and 99'
+          titlePrompt: 'Guess a Number between 0 and 99',
+          inputDisabled: false,
+          messageCap: 17,
         },
-        
         methods: {
           updateInputs: function() {
-            // pass input to HighLowGuess
-            console.log('Input pass skipped - System has not been integrated')
-            let highLowGuessResponse = [false, '<<PLACEHOLDER>>']
-            this.logPush(highLowGuessResponse)
+            if (this.userInput === '') {
+              return false
+            } else {
+              console.warn('Functionality not added - Data was not passed to logic class')
+              let guessResponse = [false, '<<Computer Response>>']
+              this.logPush(guessResponse)
+              this.userInput = ''
+            }
           },
           
           logPush: function(computerResponse) { // function to push data to the chatlog elements
-            if(this.messageLog.length > 8) { // check to see if backlog is full
+            if(this.messageLog.length > this.messageCap) { // check to see if backlog is full
               this.messageLog.splice(0, 2) //  if backlog is full, clear earliest two messages
             }
             // add to backlog
-            let toPush = [this.userInput, ComputerResponse[1]]
-            this.messageLog.concat(toPush)
+            let toPush = [this.userInput, computerResponse[1]]
+            this.messageLog = this.messageLog.concat(toPush)
             if (computerResponse[0]) {
               this.gameOver()
             }
@@ -93,7 +98,6 @@ class VueController {
           gameOver: function() {
             this.inputDisabled = true
           }
-          
         }
       })
     )
