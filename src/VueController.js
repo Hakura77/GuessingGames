@@ -43,11 +43,15 @@ class VueController {
       new Vue ({
         el: '#sidebar',
         data: {
-          
+          debug: true
         },
         methods: {
           switchTo: function(target) {
-            this.vContSwitchTo(target)
+            if(this.debug) {
+              console.log('switching to ' + target)
+            }
+            this.currentGame = target
+            
           }
         }
         
@@ -56,7 +60,7 @@ class VueController {
     )
 	
     this.allMyElements.set( 
-      'gameDisplay',
+      'gameDiv',
       new Vue ({
         el: '#gameDiv',
         data: {

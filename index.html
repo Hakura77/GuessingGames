@@ -21,8 +21,9 @@
 <script>
   // disabled the window.onload() call to simpleView in order to prepare for conversion to Vue controller
   // window.onload = SimpleView.highLowRuntime(new HighLowGuess()) // on loading, create an instance of HighLowGuess and pass it to simpleView
+  var theController = '' 
   document.addEventListener('DOMContentLoaded', function() {
-    var theController = new VueController() // deliberately global
+    theController = new VueController() // deliberately global
   }) 
 </script>
 
@@ -33,10 +34,10 @@
 <div id='sidebarTitle'>
 <h1>Choose your game mode!</h1>
 </div>
-<input class='sidebarButton' type='button' v-on:click='switchTo(highLowGuess)' value='You guess High or Low'>
-<input class='sidebarButton' type='button' v-on:click='switchTo(hotColdGuess)' value='You guess Hot or Cold'>
-<input class='sidebarButton' type='button' v-on:click='switchTo(highLowAnswer)' value='Program Guesses High or Low'>
-<input class='sidebarButton' type='button' v-on:click='switchTo(hotColdAnswer)' value='Program Guesses Hot or Cold'>
+<input class='sidebarButton' type='button' v-on:click='switchTo("highLowGuess")' value='You guess High or Low'>
+<input class='sidebarButton' type='button' v-on:click='switchTo("hotColdGuess")' value='You guess Hot or Cold'>
+<input class='sidebarButton' type='button' v-on:click='switchTo("highLowAnswer")' value='Program Guesses High or Low'>
+<input class='sidebarButton' type='button' v-on:click='switchTo("hotColdAnswer")' value='Program Guesses Hot or Cold'>
 </div>
 
 <div id='gameDiv'>
