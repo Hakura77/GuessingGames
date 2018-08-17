@@ -50,6 +50,8 @@
     <input v-on:keyup.enter='updateInputs' v-model='userInput' :placeholder='inputPrompt' :disabled='inputDisabled'>
     <button v-on:click='updateInputs' :disabled='inputDisabled'>Submit</button>
   </div>
+  <br>
+  <button v-on:click='resetGame'>Reset</button>
 
 <!-- will move to a component based system when the understanding of vue is higher -->
 <!-- <gameHeader></gameHeader>

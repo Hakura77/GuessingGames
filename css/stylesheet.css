@@ -15,6 +15,7 @@ body {
   align-items: center;
 }
 
+
 #sidebar * {
   height: 6.5em;
   display: block;
@@ -36,6 +37,11 @@ body {
   text-align: center;
 }
 
-#messageLog {
-  height: 25em;
+#chatLog {
+  height: 32.5em;
+}
+
+li {
+  list-style-type: none;
+  padding-bottom: 0.2em;
 }

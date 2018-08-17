@@ -69,7 +69,7 @@ class VueController {
           userInput: '',
           titlePrompt: 'Guess a Number between 0 and 99',
           inputDisabled: false,
-          messageCap: 17,
+          messageCap: 23,
         },
         methods: {
           updateInputs: function() {
@@ -97,6 +97,12 @@ class VueController {
           
           gameOver: function() {
             this.inputDisabled = true
+          },
+          
+          resetGame: function() {
+            this.messageLog = ['<<first Prompt Placeholder>>'] // change this in intergration
+            this.inputDisabled = false
+            this.userInput = ''
           }
         }
       })
