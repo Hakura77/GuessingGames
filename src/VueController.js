@@ -1,4 +1,12 @@
-/* 
+/* Program created by Thomas Baines
+for use in BCPR280 - Software Engineering 2; Assignment 2
+All rights reserved */
+
+/* updated to conform to standardJS 20/08/2018 */
+
+/* global Vue */
+
+/*
 will work on this later once more has been learned about vue
 
 Vue.component(
@@ -16,52 +24,48 @@ Vue.component(
 
 Vue.component (
   'gameInput' {
-    
-    
+
   }
 
 ) */
 
-class VueController {
+class VueController { // eslint-disable-line no-unused-vars
   constructor () {
     this.allMyElements = new Map()
     this.allMyGames = []
     this.currentGame = undefined
     this.initalize()
   }
-  
-  vContSwitchTo(target) {
+
+  vContSwitchTo (target) {
     return false // not implimented
   }
-  
-  
-  initalize() {
+
+  initalize () {
     // method to initalize the vue element bindings and also set currentGame correctly
-    
+
     this.allMyElements.set( // create sideBar bound vue element
       'sideBar',
-      new Vue ({
+      new Vue({
         el: '#sidebar',
         data: {
           debug: true
         },
         methods: {
-          switchTo: function(target) {
-            if(this.debug) {
+          switchTo: function (target) {
+            if (this.debug) {
               console.log('switching to ' + target)
             }
             this.currentGame = target
-            
           }
         }
-        
-        
+
       })
     )
-    
+
     this.allMyElements.set(
       'gameDiv',
-      new Vue ({
+      new Vue({
         el: '#gameDiv',
         data: {
           messageLog: ['<<First prompt Placeholder>>'],
@@ -69,10 +73,10 @@ class VueController {
           userInput: '',
           titlePrompt: 'Guess a Number between 0 and 99',
           inputDisabled: false,
-          messageCap: 23,
+          messageCap: 23
         },
         methods: {
-          updateInputs: function() {
+          updateInputs: function () {
             if (this.userInput === '') {
               return false
             } else {
@@ -82,9 +86,9 @@ class VueController {
               this.userInput = ''
             }
           },
-          
-          logPush: function(computerResponse) { // function to push data to the chatlog elements
-            if(this.messageLog.length > this.messageCap) { // check to see if backlog is full
+
+          logPush: function (computerResponse) { // function to push data to the chatlog elements
+            if (this.messageLog.length > this.messageCap) { // check to see if backlog is full
               this.messageLog.splice(0, 2) //  if backlog is full, clear earliest two messages
             }
             // add to backlog
@@ -94,12 +98,12 @@ class VueController {
               this.gameOver()
             }
           },
-          
-          gameOver: function() {
+
+          gameOver: function () {
             this.inputDisabled = true
           },
-          
-          resetGame: function() {
+
+          resetGame: function () {
             this.messageLog = ['<<first Prompt Placeholder>>'] // change this in intergration
             this.inputDisabled = false
             this.userInput = ''
@@ -107,12 +111,7 @@ class VueController {
         }
       })
     )
-    
+
     this.currentGame = 'HighLowGuess'
   }
-  
-  
-  
-  
-  
 }
