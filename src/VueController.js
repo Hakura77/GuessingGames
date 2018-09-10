@@ -32,13 +32,23 @@ Vue.component (
 class VueController { // eslint-disable-line no-unused-vars
   constructor () {
     this.allMyElements = new Map()
-    this.allMyGames = []
+    this.allMyGames = new Map()
     this.currentGame = undefined
-    this.initalize()
+    this.initalize()  
+    this.gameDiv.setParent(this)
   }
-
-  vContSwitchTo (target) {
-    return false // not implimented
+  
+  createGames () {
+    this.allMyGames.set('HighLowGuess', new HighLowGuess())
+  }
+  
+  setCurrentGame(gameKey) {
+    this.currentGame = this.allMyGames.get(gameKey)
+    // this.gameDiv.
+  }
+  
+  get gameDiv() {
+    return this.allMyElements.get('gameDiv')
   }
 
   initalize () {
@@ -49,14 +59,15 @@ class VueController { // eslint-disable-line no-unused-vars
       new Vue({
         el: '#sidebar',
         data: {
-          debug: true
+          debug: true,
+          myParent: this
         },
         methods: {
           switchTo: function (target) {
             if (this.debug) {
               console.log('switching to ' + target)
             }
-            this.currentGame = target
+            this.setCurrentGame(target)
           }
         }
 
@@ -71,11 +82,15 @@ class VueController { // eslint-disable-line no-unused-vars
           messageLog: ['<<First prompt Placeholder>>'],
           inputPrompt: 'Enter a Guess!',
           userInput: '',
-          titlePrompt: 'Guess a Number between 0 and 99',
+          titlePrompt: '<<Placeholder>>',
           inputDisabled: false,
-          messageCap: 23
+          messageCap: 23,
+          myParent: undefined
         },
         methods: {
+          setParent: function(theParent) {
+            this.myParent = theParent
+          },
           updateInputs: function () {
             if (this.userInput === '') {
               return false
@@ -104,14 +119,18 @@ class VueController { // eslint-disable-line no-unused-vars
           },
 
           resetGame: function () {
-            this.messageLog = ['<<first Prompt Placeholder>>'] // change this in intergration
+            this.messageLog = []
+            this.messageLog[0] = myParent.currentGame.firstPrompt // confirm that this isn't dynamic
+            this.titlePrompt = myParent.currentGame.gameTitle
             this.inputDisabled = false
             this.userInput = ''
           }
         }
       })
     )
-
-    this.currentGame = 'HighLowGuess'
+  this.createGames()
+  this.setCurrentGame('HighLowGuess')
   }
+  
+  
 }

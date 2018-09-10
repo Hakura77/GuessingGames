@@ -8,7 +8,8 @@ class HighLowGuess { // eslint-disable-line no-unused-vars
   constructor () {
     this.answer = Math.floor(Math.random() * 100)
     this.guessCount = 0
-    this.firstPrompt = 'Guess a number between 0 and 99'
+    this.firstPrompt = 'Guess a number between 0 and 99',
+    this.gameTitle = 'Guess a number between 0 and 99'
   }
 
   guess (newGuess) {
