@@ -6,10 +6,7 @@ All rights reserved */
 
 class HighLowGuess { // eslint-disable-line no-unused-vars
   constructor () {
-    this.answer = Math.floor(Math.random() * 100)
-    this.guessCount = 0
-    this.firstPrompt = 'Guess a number between 0 and 99',
-    this.gameTitle = 'Guess a number between 0 and 99'
+    this.initalize()
   }
 
   guess (newGuess) {
@@ -40,5 +37,13 @@ class HighLowGuess { // eslint-disable-line no-unused-vars
     } else { // guess was correct
       return [true, `You got it in ${this.guessCount} tries`]
     }
+  }
+  
+  initalize() {
+    // build or reset the data storage within the "this" scope
+    this.answer = Math.floor(Math.random() * 100)
+    this.guessCount = 0
+    this.firstPrompt = 'Guess a number between 0 and 99',
+    this.gameTitle = 'Guess a number between 0 and 99'
   }
 }
