@@ -2,9 +2,9 @@
 for use in BCPR280 - Software Engineering 2; Assignment 2
 All rights reserved */
 
-/* updated to conform to standardJS 20/08/2018 */
+/* updated to conform to standardJS 12/09/2018 */
 
-/* global Vue */
+/* global Vue HighLowGuess */
 
 /*
 will work on this later once more has been learned about vue
@@ -34,28 +34,28 @@ class VueController { // eslint-disable-line no-unused-vars
     this.allMyElements = new Map()
     this.allMyGames = new Map()
     this.currentGame = undefined
-    this.initalize()  
+    this.initalize()
     this.gameDiv.setParent(this)
   }
-  
+
   createGames () {
     this.allMyGames.set('highLowGuess', new HighLowGuess())
   }
-  
-  setCurrentGame(gameKey) {
+
+  setCurrentGame (gameKey) {
     this.currentGame = this.allMyGames.get(gameKey)
     if (this.currentGame) {
       this.gameDiv.resetGame()
     } else {
-      throw 'Game object not found'
+      throw new Error('Game object not found')
     }
   }
-  
-  get gameDiv() {
+
+  get gameDiv () {
     return this.allMyElements.get('gameDiv')
   }
-  
-  get sideBar() {
+
+  get sideBar () {
     return this.allMyElements.get('sideBar')
   }
 
@@ -77,7 +77,7 @@ class VueController { // eslint-disable-line no-unused-vars
             }
             this.myParent.setCurrentGame(target)
           },
-          setParent: function(theParent) {
+          setParent: function (theParent) {
             this.myParent = theParent
           }
         }
@@ -99,7 +99,7 @@ class VueController { // eslint-disable-line no-unused-vars
           myParent: undefined
         },
         methods: {
-          setParent: function(theParent) {
+          setParent: function (theParent) {
             this.myParent = theParent
           },
           updateInputs: function () {
@@ -131,7 +131,7 @@ class VueController { // eslint-disable-line no-unused-vars
 
           resetGame: function () {
             this.messageLog = []
-            this.messageLog[0] = this.myParent.currentGame.firstPrompt 
+            this.messageLog[0] = this.myParent.currentGame.firstPrompt
             this.titlePrompt = this.myParent.currentGame.gameTitle
             this.inputDisabled = false
             this.userInput = ''
@@ -140,11 +140,9 @@ class VueController { // eslint-disable-line no-unused-vars
         }
       })
     )
-  this.createGames()
-  this.gameDiv.setParent(this)
-  this.sideBar.setParent(this)
-  this.setCurrentGame('highLowGuess')
+    this.createGames()
+    this.gameDiv.setParent(this)
+    this.sideBar.setParent(this)
+    this.setCurrentGame('highLowGuess')
   }
-  
-  
 }

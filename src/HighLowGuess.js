@@ -2,7 +2,7 @@
 for use in BCPR280 - Software Engineering 2; Assignment 2
 All rights reserved */
 
-/* Updated to conform to standardJS 2/08/2018 5:28pm */
+/* Updated to conform to standardJS 21/09/2018 1:46pm */
 
 class HighLowGuess { // eslint-disable-line no-unused-vars
   constructor () {
@@ -38,12 +38,12 @@ class HighLowGuess { // eslint-disable-line no-unused-vars
       return [true, `You got it in ${this.guessCount} tries`]
     }
   }
-  
-  initalize() {
+
+  initalize () {
     // build or reset the data storage within the "this" scope
     this.answer = Math.floor(Math.random() * 100)
     this.guessCount = 0
-    this.firstPrompt = 'Guess a number between 0 and 99',
+    this.firstPrompt = 'Guess a number between 0 and 99'
     this.gameTitle = 'Guess a number between 0 and 99'
   }
 }
