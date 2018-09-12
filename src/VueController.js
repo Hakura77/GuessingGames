@@ -35,7 +35,6 @@ class VueController { // eslint-disable-line no-unused-vars
     this.allMyGames = new Map()
     this.currentGame = undefined
     this.initalize()
-    this.gameDiv.setParent(this)
   }
 
   createGames () {
