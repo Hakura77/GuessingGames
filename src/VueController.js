@@ -39,16 +39,24 @@ class VueController { // eslint-disable-line no-unused-vars
   }
   
   createGames () {
-    this.allMyGames.set('HighLowGuess', new HighLowGuess())
+    this.allMyGames.set('highLowGuess', new HighLowGuess())
   }
   
   setCurrentGame(gameKey) {
     this.currentGame = this.allMyGames.get(gameKey)
-    // this.gameDiv.
+    if (this.currentGame) {
+      this.gameDiv.resetGame()
+    } else {
+      throw 'Game object not found'
+    }
   }
   
   get gameDiv() {
     return this.allMyElements.get('gameDiv')
+  }
+  
+  get sideBar() {
+    return this.allMyElements.get('sideBar')
   }
 
   initalize () {
@@ -67,7 +75,10 @@ class VueController { // eslint-disable-line no-unused-vars
             if (this.debug) {
               console.log('switching to ' + target)
             }
-            this.setCurrentGame(target)
+            this.myParent.setCurrentGame(target)
+          },
+          setParent: function(theParent) {
+            this.myParent = theParent
           }
         }
 
@@ -95,8 +106,8 @@ class VueController { // eslint-disable-line no-unused-vars
             if (this.userInput === '') {
               return false
             } else {
-              console.warn('Functionality not added - Data was not passed to logic class')
-              let guessResponse = [false, '<<Computer Response>>']
+              // console.warn('Functionality not added - Data was not passed to logic class')
+              let guessResponse = this.myParent.currentGame.guess(this.userInput)
               this.logPush(guessResponse)
               this.userInput = ''
             }
@@ -120,16 +131,19 @@ class VueController { // eslint-disable-line no-unused-vars
 
           resetGame: function () {
             this.messageLog = []
-            this.messageLog[0] = myParent.currentGame.firstPrompt // confirm that this isn't dynamic
-            this.titlePrompt = myParent.currentGame.gameTitle
+            this.messageLog[0] = this.myParent.currentGame.firstPrompt 
+            this.titlePrompt = this.myParent.currentGame.gameTitle
             this.inputDisabled = false
             this.userInput = ''
+            this.myParent.currentGame.initalize()
           }
         }
       })
     )
   this.createGames()
-  this.setCurrentGame('HighLowGuess')
+  this.gameDiv.setParent(this)
+  this.sideBar.setParent(this)
+  this.setCurrentGame('highLowGuess')
   }
   
   
