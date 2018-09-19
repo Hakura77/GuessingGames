@@ -68,6 +68,6 @@ class HotColdGuess { // eslint-disable-line no-unused-vars
     this.answer = Math.floor(Math.random() * 100)
     this.guessCount = 0
     this.firstPrompt = 'Guess a number between 0 and 99, I will respond “cold” if you’re more than 40 away from the target, I will respond “cool” if you’re less than 40 and greater than 19. I will respond “warm” if you’re less than 20 and greater than 9. I will respond “hot” if you’re less than 9.'
-    this.gameTitle = 'Guess a number between 0 and 99'
+    this.gameTitle = "Guess a number and I'll tell you how hot you are"
   }
 }

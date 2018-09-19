@@ -23,6 +23,7 @@
   // disabled the window.onload() call to simpleView in order to prepare for conversion to Vue controller
   // window.onload = SimpleView.highLowRuntime(new HighLowGuess()) // on loading, create an instance of HighLowGuess and pass it to simpleView
   var theController = '' 
+  var DEBUG = true
   document.addEventListener('DOMContentLoaded', function() {
     theController = new VueController() // deliberately global
   }) 

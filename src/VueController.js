@@ -1,10 +1,10 @@
 /* Program created by Thomas Baines
-for use in BCPR280 - Software Engineering 2; Assignment 2
+for use in BCPR280 - Software Engineering 2 Assignment 2
 All rights reserved */
 
-/* updated to conform to standardJS 12/09/2018 */
+/* updated to conform to standardJS 19/09/2018 */
 
-/* global Vue HighLowGuess */
+/* global Vue HighLowGuess HotColdGuess, DEBUG */
 
 /*
 will work on this later once more has been learned about vue
@@ -39,14 +39,21 @@ class VueController { // eslint-disable-line no-unused-vars
 
   createGames () {
     this.allMyGames.set('highLowGuess', new HighLowGuess())
+    this.allMyGames.set('hotColdGuess', new HotColdGuess())
   }
 
   setCurrentGame (gameKey) {
-    this.currentGame = this.allMyGames.get(gameKey)
-    if (this.currentGame) {
-      this.gameDiv.resetGame()
+    if (this.currentGame !== this.allMyGames.get(gameKey)) {
+      this.currentGame = this.allMyGames.get(gameKey)
+      if (this.currentGame) {
+        this.gameDiv.resetGame()
+      } else {
+        throw new Error('Game object not found')
+      }
     } else {
-      throw new Error('Game object not found')
+      if (DEBUG) {
+        console.log('Attempted to switch to the in-progress game. Aborting switch')
+      }
     }
   }
 
@@ -66,12 +73,11 @@ class VueController { // eslint-disable-line no-unused-vars
       new Vue({
         el: '#sidebar',
         data: {
-          debug: true,
           myParent: this
         },
         methods: {
           switchTo: function (target) {
-            if (this.debug) {
+            if (DEBUG) {
               console.log('switching to ' + target)
             }
             this.myParent.setCurrentGame(target)
@@ -94,7 +100,7 @@ class VueController { // eslint-disable-line no-unused-vars
           userInput: '',
           titlePrompt: '<<Placeholder>>',
           inputDisabled: false,
-          messageCap: 23,
+          messageCap: 20,
           myParent: undefined
         },
         methods: {
@@ -129,6 +135,9 @@ class VueController { // eslint-disable-line no-unused-vars
           },
 
           resetGame: function () {
+            if (DEBUG) {
+              console.log('Resetting current game')
+            }
             this.messageLog = []
             this.messageLog[0] = this.myParent.currentGame.firstPrompt
             this.titlePrompt = this.myParent.currentGame.gameTitle
