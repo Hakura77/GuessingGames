@@ -2,7 +2,7 @@
 for use in BCPR280 - Software Engineering 2; Assignment 2
 All rights reserved */
 
-/* Updated to conform to standardJS 21/09/2018 1:46pm */
+/* Updated to conform to standardJS 12/09/2018 1:46pm */
 
 class HighLowGuess { // eslint-disable-line no-unused-vars
   constructor () {
