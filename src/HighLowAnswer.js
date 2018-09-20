@@ -2,8 +2,9 @@
 for use in BCPR280 - Software Engineering 2; Assignment 2
 All rights reserved */
 
-/* global */
+/* Updated to conform to standardJS 20/09/2018 10:04pm */
 
+/* global */
 
 class HighLowAnswer { // eslint-disable-line no-unused-vars
   constructor () { // set static variables
@@ -12,13 +13,12 @@ class HighLowAnswer { // eslint-disable-line no-unused-vars
     this.firstPrompt = 'Think of a random whole number between 0 and 99. Is it 49?'
     this.initalize()
   }
-  
-  guess(newResponse) {
-    newResponse = newResponse.toLowerCase()
-    if (this.validResponses.find(function(theResponse) {
+
+  guess (newResponse) {
+    newResponse = String(newResponse).toLowerCase()
+    if (this.validResponses.find(function (theResponse) {
       return theResponse === newResponse
-    })) // check if input provided is within the list of alowed inputs
-    {
+    })) { // check if input provided is within the list of alowed inputs
       // valid input provided
       // binary search algorythm
       switch (newResponse) {
@@ -26,31 +26,30 @@ class HighLowAnswer { // eslint-disable-line no-unused-vars
           // too high
           this.upperBound = this.lastGuess - 1
           break
-          
-        case this.validResponses[1]: 
+
+        case this.validResponses[1]:
           // too low
           this.lowerBound = this.lastGuess + 1
           break
-          
+
         case this.validResponses[2]:
-          // got it right 
+          // got it right
           return [true, `Hooray, I got it in ${this.guessCount} guesses`]
       }
-      
+
       // generate new guess
       this.lastGuess = Math.floor((this.lowerBound + this.upperBound) / 2)
       this.guessCount += 1
       return [false, this.lastGuess]
-    } else {
+    } else { // valid input was not provided. Return error state
       return [false, 'Please enter “Too High” “Too Low” or “Correct”']
     }
   }
-  
+
   initalize () { // set dynamic variables - so class can be memory-wiped
     this.upperBound = 99
     this.lowerBound = 0
     this.guessCount = 1
     this.lastGuess = 49
   }
-  
 }
