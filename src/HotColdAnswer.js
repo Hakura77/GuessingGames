@@ -8,14 +8,14 @@ class HotColdAnswer {
   constructor () { // set static values, then call initalize()
     this.validResponses = ['cold', 'cool', 'warm', 'hot', 'correct']
     this.gameTitle = 'Think of a number and tell me how hot or cold I am'
-    this.firstPrompt = 'Think of a number between 0 and 99. Then, tell me how hot or Cold I am from your number. Say “Hot” if I’m within 9 numbers, say “warm” if I’m 10-19 away. Say “cool” if I’m 20-39 away. Say “Cold” if I’m 40 or more away, and tell me “Correct” if I guessed correctly'
+    this.firstPrompt = 'Think of a number between 0 and 99. Then, tell me how hot or Cold I am from your number. Say “Hot” if I’m within 9 numbers, say “warm” if I’m 10-19 away. Say “cool” if I’m 20-39 away. Say “Cold” if I’m 40 or more away, and tell me “Correct” if I guessed correctly. \nIs your number 0?'
     this.initalize()
   }
   
   initalize () { // resets dynamic variables so class can be memory-wiped
     this.upperBound = 99
     this.lowerBound = 0
-    this.lastGuess = 99
+    this.lastGuess = 0
     this.guessCount = 1
   }
   
@@ -68,7 +68,7 @@ class HotColdAnswer {
           case this.validResponses[3]: // hot
             this.upperBound -= 1
             let newLowerBound = this.upperBound - 8
-            if (newLowerBound < this.lowerBound) { // code to stop lower bound shrinking on repeated "hot" responses
+            if (newLowerBound > this.lowerBound) { // code to stop lower bound shrinking on repeated "hot" responses
               this.lowerBound = newLowerBound
             }
             break
@@ -78,7 +78,7 @@ class HotColdAnswer {
       }
       // boundaries are updated, generate new guess
       let newGuess = [false]
-      if ((guessCount % 2) === 1) {// last guess was lower boundary. Guess upper boundary
+      if ((this.guessCount % 2) === 1) {// last guess was lower boundary. Guess upper boundary
         newGuess.push(this.upperBound)
       } else {
         newGuess.push(this.lowerBound)
