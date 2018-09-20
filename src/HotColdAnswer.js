@@ -4,25 +4,27 @@ All rights reserved */
 
 /*  global */
 
-class HotColdAnswer {
+/* Updated to conform to standardJS 21/09/2018 11:51am */
+
+class HotColdAnswer { // eslint-disable-line no-unused-vars
   constructor () { // set static values, then call initalize()
     this.validResponses = ['cold', 'cool', 'warm', 'hot', 'correct']
     this.gameTitle = 'Think of a number and tell me how hot or cold I am'
     this.firstPrompt = 'Think of a number between 0 and 99. Then, tell me how hot or Cold I am from your number. Say “Hot” if I’m within 9 numbers, say “warm” if I’m 10-19 away. Say “cool” if I’m 20-39 away. Say “Cold” if I’m 40 or more away, and tell me “Correct” if I guessed correctly. \nIs your number 0?'
     this.initalize()
   }
-  
+
   initalize () { // resets dynamic variables so class can be memory-wiped
     this.upperBound = 99
     this.lowerBound = 0
     this.lastGuess = 0
     this.guessCount = 1
   }
-  
+
   get successMessage () { // calculates the success message according to the correct format
     return [true, `Hooray, I got it in ${this.guessCount} guesses`]
   }
-  
+
   guess (newResponse) {
     newResponse = String(newResponse).toLowerCase()
     if (this.validResponses.find(function (theResponse) {
@@ -30,7 +32,7 @@ class HotColdAnswer {
     })) { // check if input is within valid inputs
       if ((this.guessCount % 2) === 1) {
         // last guess was the lower boundary
-        switch(newResponse) { 
+        switch (newResponse) {
           case this.validResponses[0]: // cold
             this.lowerBound += 40
             break
@@ -53,7 +55,7 @@ class HotColdAnswer {
             return this.successMessage
         }
       } else { // guess was the upper boundary
-        switch(newResponse) { 
+        switch (newResponse) {
           case this.validResponses[0]: // cold
             this.upperBound -= 40
             break
@@ -78,7 +80,7 @@ class HotColdAnswer {
       }
       // boundaries are updated, generate new guess
       let newGuess = [false]
-      if ((this.guessCount % 2) === 1) {// last guess was lower boundary. Guess upper boundary
+      if ((this.guessCount % 2) === 1) { // last guess was lower boundary. Guess upper boundary
         newGuess.push(this.upperBound)
       } else {
         newGuess.push(this.lowerBound)
