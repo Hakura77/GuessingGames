@@ -40,6 +40,8 @@ class VueController { // eslint-disable-line no-unused-vars
   createGames () {
     this.allMyGames.set('highLowGuess', new HighLowGuess())
     this.allMyGames.set('hotColdGuess', new HotColdGuess())
+    this.allMyGames.set('highLowAnswer', new HighLowAnswer())
+    this.allMyGames.set('hotColdAnswer', new HotColdAnswer())
   }
 
   setCurrentGame (gameKey) {
